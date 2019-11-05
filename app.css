@@ -2,5 +2,37 @@
     background-color: #ecf5ff;
     font-size:62.5%;
     /*by default fontSize of root is 16px, 62.5% of that is going to be 10px.
-    we are going to use 'rem' as fontSize unit for next elements which is going to be calculated on 10px unit*/    
+    we are going to use 'rem' as fontSize unit for next elements which is going to be calculated based on 10px unit*/    
+}
+
+*{
+    box-sizing: border-box;
+    /*if our box is 40px*40px and borderWidth is 5px:
+    - with this property, the box size will remain the same
+    - without this property, the box size will be 50px*50px*/
+    font-family:Arial, Arial, Helvetica, sans-serif;
+    margin:0;/*this is meant to take controle of all the spacing*/
+    padding: 0;/*this is meant to take controle of all the spacing*/
+    color:#333;
+}
+h1, h2, h3, h4{
+    margin-bottom: 1rem;/*it means 10px (see root fontSize property)*/
+}
+h1{
+    font-size: 5.4rem;/*it means 54px (see root fontSize property)*/
+    color:#56a5eb;
+    margin-bottom: 5rem;/*it means 50px (see root fontSize property)*/
+}
+h1>span{
+    font-size:2.4rem;/*it means 24px (see root fontSize property)*/
+    font-weight:500;
+}
+h2{
+    font-size:4.2rem;/*it means 42px (see root fontSize property)*/
+    margin-bottom:4rem;/*it means 40px (see root fontSize property)*/
+    font-weight:700;
+}
+h3{
+    font-size:2.8rem;/*it means 28px (see root fontSize property)*/
+    font-weight:500;
 }
