@@ -1,0 +1,6 @@
+:root{
+    background-color: #ecf5ff;
+    font-size:62.5%;
+    /*by default fontSize of root is 16px, 62.5% of that is going to be 10px.
+    we are going to use 'rem' as fontSize unit for next elements which is going to be calculated on 10px unit*/    
+}
