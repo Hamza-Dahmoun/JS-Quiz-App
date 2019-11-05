@@ -36,3 +36,13 @@ let questions = [
 
 const correctBonus = 10;
 const maxQeustions = 3;
+
+
+startGame = () =>{
+    //this functino re-initialize all variables needed for the game
+    questionCounter = 0;
+    score = 0;
+    availableQuestions = [...questions];
+}
+
+startGame();
