@@ -38,7 +38,7 @@ const correctBonus = 10;
 const maxQeustions = 3;
 
 
-startGame = () =>{
+startGame = () => {
     //this functino re-initialize all variables needed for the game
     questionCounter = 0;
     score = 0;
@@ -50,7 +50,7 @@ getNewQuestion = () => {
     //this function displays a new question to the player and update all variables
 
     //first we have to check if there are no questions to show, or we already showed more questions than we planned
-    if(availableQuestions.length == 0 || questionCounter >= maxQeustions){
+    if (availableQuestions.length == 0 || questionCounter >= maxQeustions) {
         //go to the end page
         return window.location.assign('/end.html');//it will take the user to the end.html page
     }
@@ -66,7 +66,7 @@ getNewQuestion = () => {
         //we will first get the choices text of this question using the dataset which contain the custom property 'number' that we've added in the HTML tags
         //Lets get the custom property 'number' value
         const number = choice.dataset["number"];
-        
+
         //This get the choice text using the custom property 'number' value: currentQuestion['choice' + number]
         //(becuz it will be like currentQuestion[choice1], or currentQuestion[choice2], currentQuestion[choice3])
 
@@ -82,5 +82,25 @@ getNewQuestion = () => {
     //Lets now make user's clicks countable as answers
     acceptingAnswers = true;
 };
+
+
+//Adding Clicks event to the answers, when user select an answer we'll display him the next question
+choices.forEach(choice => {
+    //in each click function of answers, the event.target is a parameter
+    choice.addEventListener("click", e => {
+        //lets first check if we're accepting answers or not
+        if(!acceptingAnswers) return;
+
+        acceptingAnswers = false;
+        const selectedChoice = e.target;
+        const selectedAnswer = selectedChoice.dataset["number"];
+        console.log(selectedAnswer);
+
+        //lets move to a new question
+        getNewQuestion();
+    });
+});
+
+
 
 startGame();
