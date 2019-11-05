@@ -42,7 +42,45 @@ startGame = () =>{
     //this functino re-initialize all variables needed for the game
     questionCounter = 0;
     score = 0;
-    availableQuestions = [...questions];
+    availableQuestions = [...questions];//'availableQuestions' will become a full copy of 'questions' 
+    getNewQuestion();
 }
+
+getNewQuestion = () => {
+    //this function displays a new question to the player and update all variables
+
+    //first we have to check if there are no questions to show, or we already showed more questions than we planned
+    if(availableQuestions.length == 0 || questionCounter >= maxQeustions){
+        //go to the end page
+        return window.location.assign('/end.html');//it will take the user to the end.html page
+    }
+
+
+    questionCounter++;//increasing questions counter
+    const questionIndex = Math.floor(Math.random() * availableQuestions.length);//we knoow that availableQuestions.length=3 so questionIndex is going to randomly be one of {1, 2, 3}  
+    currentQuestion = availableQuestions[questionIndex];//updating 'currentQuestion' object using the random index 'questionIndex'
+    question.innerText = currentQuestion.question;//displaying the question text in UI from the currentQuestion object
+
+    //we have written the question text in the UI, lets now write all the choices of this question into the UI
+    choices.forEach(choice => {
+        //we will first get the choices text of this question using the dataset which contain the custom property 'number' that we've added in the HTML tags
+        //Lets get the custom property 'number' value
+        const number = choice.dataset["number"];
+        
+        //This get the choice text using the custom property 'number' value: currentQuestion['choice' + number]
+        //(becuz it will be like currentQuestion[choice1], or currentQuestion[choice2], currentQuestion[choice3])
+
+        //Now lets write the choice text to the UI from the 'currentQuestion' object
+        choice.innerText = currentQuestion["choice" + number];
+    }
+    );
+
+    //Now lets remove the current question from the availableQuestion array
+    availableQuestions.splice(questionIndex, 1);
+    //Syntax: array.splice(indexOfElementWhereToStartToRemove, HowManyElementsToRemove);
+
+    //Lets now make user's clicks countable as answers
+    acceptingAnswers = true;
+};
 
 startGame();
