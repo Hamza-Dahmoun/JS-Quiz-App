@@ -1,6 +1,7 @@
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));//this is gonna be an array converted from an HTML Colection
 const questionCounterText = document.getElementById("questionCounterText");
+const progressBarFull = document.getElementById("progressBarFull");
 const scoreText = document.getElementById("scoreText");
 
 
@@ -62,6 +63,7 @@ getNewQuestion = () => {
     //increasing questions counter and display it in UI
     questionCounter++;
     questionCounterText.innerText = questionCounter + "/" + maxQeustions;
+    progressBarFull.style.width = (questionCounter/maxQeustions)*100 + "%";
 
 
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);//we knoow that availableQuestions.length=3 so questionIndex is going to randomly be one of {1, 2, 3}  
