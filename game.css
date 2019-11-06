@@ -42,3 +42,21 @@
 .head-up-main-text{
     text-align:center;
 }
+
+/*PROGRESS BAR*/
+#progressBar{
+width:18rem;/*20*10px*/
+height: 4rem;/*4*10px*/
+border:0.3px solid #56a5eb;/*0.3*10px*/
+margin-top:1rem;
+}
+#progressBarFull{
+height:100%;;/*3.4*10px*/
+background-color: #56a5eb;
+}
+#progressBarFull p{
+    text-align:center;
+    font-size:2rem;
+    color:#fff;
+    padding-bottom:0.7rem;padding-top:0.7rem;
+}
