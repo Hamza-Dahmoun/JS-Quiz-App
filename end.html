@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Congrats!</title>
-        <link href="app.css"/>
-    </head>
-    <body>
-        
-        <script src="end.js"></script>
-    </body>
+
+<head>
+    <title>Congrats!</title>
+    <link href="app.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div id="end" class="flex-center flex-column">
+            <h1 id="finalScore">0</h1>
+            <form>
+                <input type="text" id="username" name="username" placeholder="username" />
+                <button type="submit" class="btn" id="saveScoreBtn" onclick="saveHighScore(event)">Save</button>                
+            </form>
+            <a class="btn" href="/game.html">Play Again</a>
+            <a class="btn" href="/">Go Home</a>
+        </div>
+    </div>
+    <script src="end.js"></script>
+</body>
+
 </html>
