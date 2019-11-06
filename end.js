@@ -10,6 +10,11 @@ username.addEventListener("keyup", () =>{
     saveScoreBtn.disabled = !username.value;
 });
 
+//lets get most recent score from localStorage and display it in UI
+const finalScore = document.getElementById("finalScore");
+const mostRecentScore = localStorage.getItem('mostRecentScore');
+finalScore.innerText = mostRecentScore;
+
 
 saveHighScore = e =>{
     //this line of code will prevent the button from redirecting us to "/end.html?username="

@@ -56,6 +56,8 @@ getNewQuestion = () => {
 
     //first we have to check if there are no questions to show, or we already showed more questions than we planned
     if (availableQuestions.length == 0 || questionCounter >= maxQeustions) {
+        //Before going to the end page, lets store this score in LocalStorage
+        localStorage.setItem('mostRecentScore', score);
         //go to the end page
         return window.location.assign('/end.html');//it will take the user to the end.html page
     }
