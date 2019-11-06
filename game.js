@@ -1,7 +1,7 @@
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));//this is gonna be an array converted from an HTML Colection
 const questionCounterText = document.getElementById("questionCounterText");
-
+const scoreText = document.getElementById("scoreText");
 
 
 let currentQuestion = {};//will be used to display the question
@@ -49,6 +49,7 @@ startGame = () => {
     getNewQuestion();
 }
 
+//this is an arrow syntax for js functions without parameters
 getNewQuestion = () => {
     //this function displays a new question to the player and update all variables
 
@@ -89,6 +90,14 @@ getNewQuestion = () => {
     acceptingAnswers = true;
 };
 
+//this is an arrow syntax for js functions with one parameter
+increaseScore_inUI = num =>{
+    score+=num;
+    scoreText.innerText = score;
+    console.log("hello");
+};
+
+
 
 //Adding Clicks event to the answers, when user select an answer we'll check if his answer is correct
 //and then display him the next question
@@ -106,6 +115,7 @@ choices.forEach(choice => {
         let classToApply = 'incorrect';
         if (selectedAnswer == currentQuestion.answer) {
             classToApply = 'correct';
+            increaseScore_inUI(correctBonus);
         }
         //lets now colorize the answer with the classToApply
         selectedChoice.parentElement.classList.add(classToApply);
