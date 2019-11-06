@@ -29,3 +29,16 @@
 .incorrect{
     background-color: red;
 }
+/*HEAD UP DISPLAY ELEMENTS*/
+#head-up-display{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.head-up-prefix{
+    text-align:center;
+    font-size:2rem;/*it means 20px*/
+}
+.head-up-main-text{
+    text-align:center;
+}
