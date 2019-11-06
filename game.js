@@ -97,7 +97,7 @@ choices.forEach(choice => {
         const selectedAnswer = selectedChoice.dataset["number"];
 
         //lets now check the correctness of the answer and colorize it accordingly
-        const classToApply = 'incorrect';
+        let classToApply = 'incorrect';
         if (selectedAnswer == currentQuestion.answer) {
             classToApply = 'correct';
         }
