@@ -1,5 +1,8 @@
 const question = document.getElementById("question");
 const choices = Array.from(document.getElementsByClassName("choice-text"));//this is gonna be an array converted from an HTML Colection
+const questionCounterText = document.getElementById("questionCounterText");
+
+
 
 let currentQuestion = {};//will be used to display the question
 let acceptingAnswers = false;//will be used to control when to consider the user click as an answer to prevent him from clicking an answer by mistake
@@ -55,8 +58,11 @@ getNewQuestion = () => {
         return window.location.assign('/end.html');//it will take the user to the end.html page
     }
 
+    //increasing questions counter and display it in UI
+    questionCounter++;
+    questionCounterText.innerText = questionCounter + "/" + maxQeustions;
 
-    questionCounter++;//increasing questions counter
+
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);//we knoow that availableQuestions.length=3 so questionIndex is going to randomly be one of {1, 2, 3}  
     currentQuestion = availableQuestions[questionIndex];//updating 'currentQuestion' object using the random index 'questionIndex'
     question.innerText = currentQuestion.question;//displaying the question text in UI from the currentQuestion object
