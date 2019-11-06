@@ -84,20 +84,36 @@ getNewQuestion = () => {
 };
 
 
-//Adding Clicks event to the answers, when user select an answer we'll display him the next question
+//Adding Clicks event to the answers, when user select an answer we'll check if his answer is correct
+//and then display him the next question
 choices.forEach(choice => {
     //in each click function of answers, the event.target is a parameter
     choice.addEventListener("click", e => {
         //lets first check if we're accepting answers or not
-        if(!acceptingAnswers) return;
+        if (!acceptingAnswers) return;
 
         acceptingAnswers = false;
         const selectedChoice = e.target;
         const selectedAnswer = selectedChoice.dataset["number"];
-        console.log(selectedAnswer);
 
-        //lets move to a new question
-        getNewQuestion();
+        //lets now check the correctness of the answer and colorize it accordingly
+        const classToApply = 'incorrect';
+        if (selectedAnswer == currentQuestion.answer) {
+            classToApply = 'correct';
+        }
+        //lets now colorize the answer with the classToApply
+        selectedChoice.parentElement.classList.add(classToApply);
+
+        //Now lets wait for one second so that the user see whether his answer is correct (freen) or incorrect (red)
+        //and then move to next question
+        setTimeout(() => {
+            //before moving to next question, lets remove the colorization that we've added to the selected answer
+            selectedChoice.parentElement.classList.remove(classToApply);
+            //lets move to a new question
+            getNewQuestion();
+        }, 1000);
+
+
     });
 });
 
