@@ -48,6 +48,8 @@ saveHighScore = e => {
         //If compareFunction(a, b) returns greater than 0, sort b to an index lower than a (i.e. b comes first).
         //If compareFunction(a, b) returns 0, leave a and b unchanged with respect to each other, but sorted with respect to all different elements.
     })
+    //step4: splice all elements from the array after index '5'
+    highScores.splice(5);//this means just cut off the elements from index 5 and greater
     
 
 
