@@ -53,6 +53,9 @@ saveHighScore = e => {
     //step5: reStore the new array in localStorage
     localStorage.setItem("highScores", JSON.stringify(highScores));
 
+    //Now lets redirect the user to the hme page
+    window.location.assign("/");
+
 
 }
 
