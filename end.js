@@ -33,6 +33,12 @@ saveHighScore = e => {
 
     //step1: getting the array of hish scores from the localStorage, it is stored as string, so we've to parse it to become an array
     const highScores = JSON.parse(localStorage.getItem("highScores")) || [];//(this means if it doesn't find an item 'highScores' in localStorage it will return an empty array [])
+    //step2: pushing the new score with the player name to the highScores array
+    const score={
+        score : mostRecentScore,
+        name : username.value
+    };
+    highScores.push(score);
     
 
 
