@@ -39,6 +39,15 @@ saveHighScore = e => {
         name : username.value
     };
     highScores.push(score);
+    //step3: sort the array from biggest to the smallest
+    highScores.sort( (a,b) => {
+        return b.score - a.score;
+        //explanation from developer mozilla
+        //in our case, compareFunction(a, b) is (b - a)
+        //If compareFunction(a, b) returns less than 0, sort a to an index lower than b (i.e. a comes first).
+        //If compareFunction(a, b) returns greater than 0, sort b to an index lower than a (i.e. b comes first).
+        //If compareFunction(a, b) returns 0, leave a and b unchanged with respect to each other, but sorted with respect to all different elements.
+    })
     
 
 
