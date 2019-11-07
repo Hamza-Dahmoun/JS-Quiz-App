@@ -50,7 +50,8 @@ saveHighScore = e => {
     })
     //step4: splice all elements from the array after index '5'
     highScores.splice(5);//this means just cut off the elements from index 5 and greater
-    
+    //step5: reStore the new array in localStorage
+    localStorage.setItem("highScores", JSON.stringify(highScores));
 
 
 }
