@@ -12,6 +12,14 @@ let questionCounter = 0;
 let availableQuestions = [];//will contain remaining questions to show
 
 let questions = []; //this is an array of questions objects ... it will be feeded from questions.json using fetch()
+//fetch() will return a promess so we use .then() to get the response and use it 
+fetch("questions.json").then(response => {
+    console.log(response);
+})
+.catch(error =>{
+    console.log(error);
+});
+
 
 const correctBonus = 10;
 const maxQeustions = 3;
