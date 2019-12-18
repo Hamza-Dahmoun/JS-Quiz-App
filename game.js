@@ -41,23 +41,62 @@ let questions = []; //this is an array of questions objects ... it will be feede
 ];*/
 
 //fetch() will return a promess so we use .then() to get the response and use it 
-fetch("questions.json", {mode:'no-cors'}).then(res => {
+
+//****************************** FETCH API FROM LOCAL FILE ******************************/
+/*IMPORTANT:
+since we are loading data from a local file, always use (mode: 'no-cors') in fetch("questions.json", { mode: 'no-cors' })
+otherwise it won't permit loading data, it will throw cross origin error
+N.B: browsers (i'm sure abt chrome) won't permit loading data from local json file, so in order to check if the code works
+if the code works just open the file using Live Server or something similar
+*/
+/*
+fetch("questions.json", { mode: 'no-cors' }).then(res => {
     //console.log(res);
     //lets return the response body in a json format to the next then()
     //'res' is the Response
     //'res.json()' is the Response Body
     return res.json();
-}).then(loadedQuestions =>{
+}).then(loadedQuestions => {
     console.log(loadedQuestions);
     //lets assign the array of the question objects (json) we've got to the empty array 'questions'
     questions = loadedQuestions;
     //now, we've got the questions successfully, so lets start the game
     startGame();
-}).catch(error =>{
+}).catch(error => {
+    //this code will be reached just in case an error happened, example: wrong path
+    console.error(error);
+});
+*/
+//****************************** END OF FETCH API FROM LOCAL FILE ******************************/
+
+//GoTo https://opentdb.com/api_config.php and generate your link according to what category to difficulty to....
+let questionsSourceURL= "https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple";
+fetch(questionsSourceURL).then(res => {
+    //lets return the response body in a json format to the next then()
+    //'res' is the Response
+    //'res.json()' is the Response Body
+    return res.json();
+}).then(loadedQuestions => {
+    //lets se the format of the array we've got by logging it just to see what to do to make it look like the data in 'questions.json'
+    //console.log(loadedQuestions.results);
+    //after logging 'loadedQuestions.results' to console we know its format
+    //lets assign the array of the question objects (json) we've got to the empty array 'questions' but in the same format as in 'questions.js'    
+    questions = convertArrayFormat(loadedQuestions.results);
+    console.log(questions);
+    //now, we've got the questions successfully, so lets start the game
+    startGame();
+}).catch(error => {
     //this code will be reached just in case an error happened, example: wrong path
     console.error(error);
 });
 
+function convertArrayFormat(arr){
+    //this function takes the array of objects brought from open trivia database api and makes it the same format as the json data in the file 'questions.json'
+    //the properties that we're going to use from the brought data are: 'question', 'incorrect_answers', 'correct_answer'
+    let convertedArray = [];
+    
+    return convertedArray;
+}
 
 const correctBonus = 10;
 const maxQeustions = 3;
@@ -86,7 +125,7 @@ getNewQuestion = () => {
     //increasing questions counter and display it in UI
     questionCounter++;
     questionCounterText.innerText = questionCounter + "/" + maxQeustions;
-    progressBarFull.style.width = (questionCounter/maxQeustions)*100 + "%";
+    progressBarFull.style.width = (questionCounter / maxQeustions) * 100 + "%";
 
 
     const questionIndex = Math.floor(Math.random() * availableQuestions.length);//we knoow that availableQuestions.length=3 so questionIndex is going to randomly be one of {1, 2, 3}  
@@ -116,8 +155,8 @@ getNewQuestion = () => {
 };
 
 //this is an arrow syntax for js functions with one parameter
-increaseScore_inUI = num =>{
-    score+=num;
+increaseScore_inUI = num => {
+    score += num;
     scoreText.innerText = score;
     console.log("hello");
 };
