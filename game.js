@@ -84,6 +84,7 @@ fetch(questionsSourceURL).then(res => {
     questions = convertArrayFormat(loadedQuestions.results);
     console.log(questions);
     //now, we've got the questions successfully, so lets start the game
+    maxQeustions = questions.length;
     startGame();
 }).catch(error => {
     //this code will be reached just in case an error happened, example: wrong path
@@ -136,7 +137,7 @@ function convertArrayFormat(arr){
 }
 
 const correctBonus = 10;
-const maxQeustions = 3;
+var maxQeustions;
 
 
 startGame = () => {
