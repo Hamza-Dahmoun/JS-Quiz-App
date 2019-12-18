@@ -11,13 +11,51 @@ let score = 0;
 let questionCounter = 0;
 let availableQuestions = [];//will contain remaining questions to show
 
-let questions = []; //this is an array of questions objects ... it will be feeded from questions.json using fetch()
+let questions = []; //this is an array of questions objects ... it will be feeded from questions.json using fetch() API
+/*let questions =
+[
+    {
+    question: "Inside which HTML element do we put the Javascript?",
+    choice1: "<script>",
+    choice2: "<javascript>",
+    choice3: "<js>",
+    choice4: "<scripting>",
+    answer: 1
+},
+{
+    question: "What is the correct syntax for referring to an external script called 'xxx.js'?",
+    choice1: "<script href='xxx.js'",
+    choice2: "<script name='xxx.js'>",
+    choice3: "<script src='xxx.js'>",
+    choice4: "<script file='xxx.js'>",
+    answer: 3
+},
+{
+    question: "How do you write 'Hello World' in an alert box?",
+    choice1: "msgBox('Hello World');",
+    choice2: "alertBox('Hello World');",
+    choice3: "msg('Hello World');",
+    choice4: "alert('Hello World');",
+    answer: 4
+}
+];*/
+
 //fetch() will return a promess so we use .then() to get the response and use it 
-fetch("questions.json").then(response => {
-    console.log(response);
-})
-.catch(error =>{
-    console.log(error);
+fetch("questions.json", {mode:'no-cors'}).then(res => {
+    //console.log(res);
+    //lets return the response body in a json format to the next then()
+    //'res' is the Response
+    //'res.json()' is the Response Body
+    return res.json();
+}).then(loadedQuestions =>{
+    console.log(loadedQuestions);
+    //lets assign the array of the question objects (json) we've got to the empty array 'questions'
+    questions = loadedQuestions;
+    //now, we've got the questions successfully, so lets start the game
+    startGame();
+}).catch(error =>{
+    //this code will be reached just in case an error happened, example: wrong path
+    console.error(error);
 });
 
 
@@ -122,4 +160,4 @@ choices.forEach(choice => {
 
 
 
-startGame();
+//startGame();
