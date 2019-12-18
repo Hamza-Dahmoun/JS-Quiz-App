@@ -94,7 +94,44 @@ function convertArrayFormat(arr){
     //this function takes the array of objects brought from open trivia database api and makes it the same format as the json data in the file 'questions.json'
     //the properties that we're going to use from the brought data are: 'question', 'incorrect_answers', 'correct_answer'
     let convertedArray = [];
-    
+    //console.log(arr);
+    for(let i=0; i<arr.length; i++){
+        let questionObject = {question: "", choice1: "", answer: 0};
+        //1- lets fill the question text
+        questionObject.question = arr[i].question;
+        
+        //2- lets fill the 'incorrect_answers' array items into 'choice1, choice2...' properties of questionObject
+        for(let j=0; j<arr[i].incorrect_answers.length; j++){
+            questionObject["choice" + (j+1)] = arr[i].incorrect_answers[j];
+        }
+
+        //3- lets fill 'correct_answer' into 'choiceX' too
+        questionObject["choice" + (arr[i].incorrect_answers.length+1)] = arr[i].correct_answer;
+        //(Note that in this way all correct answers are the last choice, this can be guessed by players, so we should change that by putting the correct answer in a random position)
+        
+        //4- lets change the position of the correct answer randomly and store its index in questionObject.answer
+        //4-a- Choose a random number different than zero
+        let randomOneToLength = Math.floor(Math.random()*(arr[i].incorrect_answers.length+1+1));
+        //the first (+1) is because we added the correct answer in the end.. the second (+1) is just to include 'N' when choose random number between 0~N
+        
+        if(randomOneToLength == 0){
+            randomOneToLength=1;
+        }
+        //4-b- assign the answer stored in (questionObject.choice'randomnumber') to the variable 'answer'
+        let answer = questionObject["choice"+randomOneToLength];
+        //console.log("old answer: " + answer);
+        //4-c- store the correct answer (which is in last choice) into (questionObject.choice'randomnumber')
+        questionObject["choice"+randomOneToLength]=questionObject["choice" + (arr[i].incorrect_answers.length+1).toString()];
+        //console.log('correct answer: ' + questionObject["choice"+randomOneToLength]);
+        //4-d- now store the value of the variable 'answer' into the last choice
+        questionObject["choice" + (arr[i].incorrect_answers.length+1).toString()] = answer;
+
+        //5- lets store the new position of the correct answer in 'questionObject.answer'
+        questionObject.answer = randomOneToLength;
+
+        //6- lets push questionObject to convertedArray
+        convertedArray.push(questionObject);
+    }
     return convertedArray;
 }
 
