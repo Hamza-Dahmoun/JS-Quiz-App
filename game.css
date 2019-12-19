@@ -60,3 +60,11 @@ background-color: #56a5eb;
     color:#fff;
     padding-bottom:0.7rem;padding-top:0.7rem;
 }
+
+#loader{
+    height:12rem;
+    width:12rem;
+    border:2rem solid white;
+    border-top: 2rem solid #56a5eb  ;
+    border-radius: 50%;
+}
