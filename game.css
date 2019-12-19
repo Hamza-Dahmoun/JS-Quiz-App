@@ -67,4 +67,13 @@ background-color: #56a5eb;
     border:2rem solid white;
     border-top: 2rem solid #56a5eb  ;
     border-radius: 50%;
+    animation: spin 2s linear infinite;
+}
+@keyframes spin{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform:rotate(360deg);
+    }
 }
