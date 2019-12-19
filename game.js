@@ -4,6 +4,9 @@ const questionCounterText = document.getElementById("questionCounterText");
 const progressBarFull = document.getElementById("progressBarFull");
 const scoreText = document.getElementById("scoreText");
 
+const game = document.getElementById("game");
+const loader = document.getElementById("loader");
+
 
 let currentQuestion = {};//will be used to display the question
 let acceptingAnswers = false;//will be used to control when to consider the user click as an answer to prevent him from clicking an answer by mistake
@@ -146,6 +149,10 @@ startGame = () => {
     score = 0;
     availableQuestions = [...questions];//'availableQuestions' will become a full copy of 'questions' 
     getNewQuestion();
+
+    //Now we're sure we've got the question, lets display the game and hide the spinner
+    game.classList.remove("hidden");
+    loader.classList.add("hidden");
 }
 
 //this is an arrow syntax for js functions without parameters
